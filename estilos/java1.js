@@ -30,22 +30,6 @@ let producto6 = new Producto("auricular", "1500", 'imagenes/tienda1.jpg')//lista
 
 productos.push(producto0, producto1, producto2, producto3, producto4, producto5, producto6)//push a productos ya agregados
 
-
-
-//este era un modelo de card saco de bootstrap pero no me gusto y preferi hacer uno mio editado por css
-/* let tarjetas = document.querySelector("#tienda");
-for (const Producto of productos){
-    let carta=document.createElement("div");
-    carta.className ="card col-md-3";
-    carta.innerHTML= `
-                    <div class="card-body">
-                    <h5 class="card-title">${Producto.nombre}</h5>
-                    <p class="card-text">${Producto.importe}</p>
-                    <a href="#" class="btn btn-primary">Comprar</a>
-                </div>`
-        tarjetas.append(carta);
-} */
-
 //por cada objeto de mi array creo una card 
 let cartas = document.querySelector("#tienda")
 for (const obj of productos) {
@@ -62,7 +46,7 @@ for (const obj of productos) {
 
 
 //a partir de aca estoy intentando hacer el boton para hacer el carrito y la tienda pero no esta terminado
-const agregarAlCarritoBotones = document.querySelectorAll('.botonTienda');
+/* const agregarAlCarritoBotones = document.querySelectorAll('.botonTienda');
 
 agregarAlCarritoBotones.forEach((agregarAlCarro) => {
     agregarAlCarro.addEventListener('click', agregarAlCarroSeleccionado);
@@ -70,4 +54,20 @@ agregarAlCarritoBotones.forEach((agregarAlCarro) => {
 
 function agregarAlCarroSeleccionado(event){
     const boton = event.target
+} */
+
+
+
+let botonPrincipal = document.getElementById("botonPrincipal");//este es un evento q al pasar x encima del boton comprar te tira un alerta para q lo compres
+botonPrincipal.onmouseover=()=>{
+    alert("necesitas un iphone 10 !");
+
 }
+
+
+function capturarEnter(e){
+    if (e.which==13 || e.keycode==13){//esta funcion captura el evento enter del codigo postal que es el ultimo dato a llenar
+        alert("presionaste Enter");
+    }
+}
+

@@ -83,3 +83,27 @@ body {
 .promociones article div:hover {
   transform: scale(1.1);
 }
+
+/*footer*/
+.footer {
+  grid-area: footer;
+  background-color: rgb(165, 164, 164);
+  padding: 10px;
+}
+
+.footer div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer div h6 {
+  text-align: center;
+  color: white;
+  font-size: 16px;
+}
+
+.footer div img {
+  width: 50px;
+  height: 50px;
+}
