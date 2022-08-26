@@ -1,17 +1,19 @@
 const productos = [];//array donde tengo todos los productos
-const elementosCarrito = [];//array donde voy a guardar los elemntos del carrito
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];//array donde voy a guardar los elemntos del carrito y no se borra si actualizo la pagina
+const cartelTotal = document.querySelector("#total");
 const IVA = 1.21
 class ElementosCarrito {
-    constructor(producto, cantidad){
+    constructor(producto, cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
     }
 }
 class Producto {
-    constructor(nombre, importe, foto) {
+    constructor(nombre, importe, foto, id) {
         this.nombre = nombre
         this.importe = importe
         this.foto = foto
+        this.id = id
 
     }
     precioFinal() {
@@ -20,54 +22,78 @@ class Producto {
 }//agrega iva
 
 
-let producto0 = new Producto("notebook", "100000", './imagenes/tienda1.jpg')
-let producto1 = new Producto("celular", "80000", './imagenes/tienda1.jpg')
-let producto2 = new Producto("funda", "1000", './imagenes/tienda1.jpg')
-let producto3 = new Producto("vidrio templado", "1000", 'imagenes/tienda1.jpg')
-let producto4 = new Producto("mouse", "2000", 'imagenes/tienda1.jpg')
-let producto5 = new Producto("teclado", "1000", 'imagenes/tienda1.jpg')
-let producto6 = new Producto("auricular", "1500", 'imagenes/tienda1.jpg')//lista de productos
+let producto0 = new Producto("notebook", "100000", './imagenes/tienda1.jpg', "1")
+let producto1 = new Producto("celular", "80000", './imagenes/tienda1.jpg', "2")
+let producto2 = new Producto("funda", "1000", './imagenes/tienda1.jpg', "3")
+let producto3 = new Producto("vidrio templado", "1000", 'imagenes/tienda1.jpg', "4")
+let producto4 = new Producto("mouse", "2000", 'imagenes/tienda1.jpg', "5")
+let producto5 = new Producto("teclado", "1000", 'imagenes/tienda1.jpg', "6")
+let producto6 = new Producto("auricular", "1500", 'imagenes/tienda1.jpg', "7")//lista de productos
 
 productos.push(producto0, producto1, producto2, producto3, producto4, producto5, producto6)//push a productos ya agregados
 
-//por cada objeto de mi array creo una card 
-let cartas = document.querySelector("#tienda")
-for (const obj of productos) {
-    let carta = document.createElement("div");
-    carta.innerHTML = `
-   <img src ="${obj.foto}">
-                        <h3>${obj.nombre}</h3>
-                        <p>${obj.importe}</p>
-                        <a href class="botonTienda">Comprar</a>
-                         `
-    cartas.append(carta);
-}//puse en las fotos siempre la misma pero los nombres y los importes van cambiando
+const containerDiv = document.querySelector("#tienda");
+const carritoDiv = document.querySelector("#carrito1");
 
-
-
-//a partir de aca estoy intentando hacer el boton para hacer el carrito y la tienda pero no esta terminado
-/* const agregarAlCarritoBotones = document.querySelectorAll('.botonTienda');
-
-agregarAlCarritoBotones.forEach((agregarAlCarro) => {
-    agregarAlCarro.addEventListener('click', agregarAlCarroSeleccionado);
-});
-
-function agregarAlCarroSeleccionado(event){
-    const boton = event.target
-} */
-
-
-
-let botonPrincipal = document.getElementById("botonPrincipal");//este es un evento q al pasar x encima del boton comprar te tira un alerta para q lo compres
-botonPrincipal.onmouseover=()=>{
-    alert("necesitas un iphone 10 !");
-
+//funcion para crear las cards segun los productos del array
+function crearCards() {
+    productos.forEach((obj) => {
+        containerDiv.innerHTML += `<div>
+                                        <img src ="${obj.foto}">
+                                        <h3>${obj.nombre}</h3>
+                                        <p>$${obj.importe}</p>
+                                        <button id="btn-agregar${obj.id}">Agregar</button> 
+                                    </div>`;
+    });
+      agregarFuncionalidad(); 
 }
-
-
-function capturarEnter(e){
-    if (e.which==13 || e.keycode==13){//esta funcion captura el evento enter del codigo postal que es el ultimo dato a llenar
-        alert("presionaste Enter");
-    }
+//agregandole funcion al boton para agregar producto al carrito 
+function agregarFuncionalidad() {
+    productos.forEach((obj) => {
+        document.querySelector(`#btn-agregar${obj.id}`).addEventListener("click", () => {
+            agregarCarrito(obj)
+        })
+    })
 }
-
+//con esta funcion lo que hago es agregarle a la cantidad sin que se me agregue otro producto igual
+function agregarCarrito(obj){
+    let existe = carrito.some((productoSome) => productoSome.id === obj.id);
+    if (existe === false){
+        obj.cantidad = 1;
+        carrito.push(obj);
+    } else{
+        let objFind = carrito.find(productoFind => productoFind.id === obj.id)
+        objFind.cantidad++;
+    } 
+console.log(carrito);
+visualizarCarrito();
+}
+//funcion para visualizar los objetos en el carrito 
+function visualizarCarrito() {
+    carritoDiv.innerHTML = "";
+    carrito.forEach((obj) => {
+        carritoDiv.innerHTML += `<tr>
+                                       <td> ${obj.nombre}</td>
+                                       <td> ${obj.importe}</td>
+                                       <td> ${obj.cantidad}</td>
+                                       <td> <button id="btn-eliminar${obj.id}">Borrar</button></td>
+                                    </tr>`;
+    })
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+    totalCarrito()
+    borrarCarrito()
+}
+function totalCarrito() {
+    cartelTotal.innerText = carrito.reduce((acc, el) => acc + (el.importe), 0)
+}
+//funcion para borrar los objetos del carrito 
+function borrarCarrito() {
+    carrito.forEach((obj) => {
+        document.querySelector(`#btn-eliminar${obj.id}`).addEventListener("click", () => {
+            carrito = carrito.filter((objFilter) => objFilter.id !== obj.id);
+            visualizarCarrito()
+        });
+    });
+}
+crearCards();
+visualizarCarrito();

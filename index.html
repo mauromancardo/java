@@ -52,16 +52,32 @@
 
         <section class="promociones">
             <h2>Nuestro stock de celulares</h2>
-            <article id="tienda">
+            <article id="tienda"></article>
+            <section>
                 <div>
-                    <img src="imagenes/ip10.jpg">
-                    <h3>Iphone 10</h3>
-                    <p>$200.000</p>
-                    <a href id="botonPrincipal">Comprar</a>
+                    <h4>Tu carrito:</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">cantidad</th>
+                                <th scope="col">boton</th>
+                            </tr>
+                        </thead>
+                        <tbody id="carrito1">
+                            <!-- aqui tabla carrito -->
+                        </tbody>
+                    </table>
+                    <div>
+                        <p totalp> Total: $</p>
+                        <p id="total"></p>
+                    </div>
                 </div>
-            </article>
+            </section>
         </section>
-        <script src="estilos/java1.js"></script><!-- no me andaba el java si lo ponia arriba -->
+        <script src="estilos/productos.js"></script>
+        <script src="estilos/java1.js"></script>
         <script src="estilos/bootstrap.js"></script>
     </body>
     <footer class="footer">
