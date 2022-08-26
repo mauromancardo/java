@@ -22,13 +22,13 @@ class Producto {
 }//agrega iva
 
 
-let producto0 = new Producto("notebook", "100000", './imagenes/tienda1.jpg', "1")
-let producto1 = new Producto("celular", "80000", './imagenes/tienda1.jpg', "2")
-let producto2 = new Producto("funda", "1000", './imagenes/tienda1.jpg', "3")
-let producto3 = new Producto("vidrio templado", "1000", 'imagenes/tienda1.jpg', "4")
-let producto4 = new Producto("mouse", "2000", 'imagenes/tienda1.jpg', "5")
-let producto5 = new Producto("teclado", "1000", 'imagenes/tienda1.jpg', "6")
-let producto6 = new Producto("auricular", "1500", 'imagenes/tienda1.jpg', "7")//lista de productos
+let producto0 = new Producto("notebook", 100000, './imagenes/tienda1.jpg', "1")
+let producto1 = new Producto("celular", 80000, './imagenes/tienda1.jpg', "2")
+let producto2 = new Producto("funda", 1000, './imagenes/tienda1.jpg', "3")
+let producto3 = new Producto("vidrio templado", 1000, 'imagenes/tienda1.jpg', "4")
+let producto4 = new Producto("mouse", 2000, 'imagenes/tienda1.jpg', "5")
+let producto5 = new Producto("teclado", 1000, 'imagenes/tienda1.jpg', "6")
+let producto6 = new Producto("auricular", 1500, 'imagenes/tienda1.jpg', "7")//lista de productos
 
 productos.push(producto0, producto1, producto2, producto3, producto4, producto5, producto6)//push a productos ya agregados
 
@@ -84,7 +84,7 @@ function visualizarCarrito() {
     borrarCarrito()
 }
 function totalCarrito() {
-    cartelTotal.innerText = carrito.reduce((acc, el) => acc + (el.importe), 0)
+    cartelTotal.innerText = carrito.reduce((acc, el) => (acc + (el.importe)) * el.cantidad, 0)
 }
 //funcion para borrar los objetos del carrito 
 function borrarCarrito() {
