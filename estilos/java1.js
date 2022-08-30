@@ -1,4 +1,5 @@
 const productos = [];//array donde tengo todos los productos
+const estandarDolarAmericanos = Intl.NumberFormat('en-US');
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];//array donde voy a guardar los elemntos del carrito y no se borra si actualizo la pagina
 const cartelTotal = document.querySelector("#total");
 const IVA = 1.21
@@ -22,13 +23,13 @@ class Producto {
 }//agrega iva
 
 
-let producto0 = new Producto("notebook", 100000, './imagenes/tienda1.jpg', "1")
-let producto1 = new Producto("celular", 80000, './imagenes/tienda1.jpg', "2")
+let producto0 = new Producto("notebook", 100000, './imagenes/tienda1.jpg', 1)
+let producto1 = new Producto("celular", 80000, './imagenes/tienda1.jpg', 2)
 let producto2 = new Producto("funda", 1000, './imagenes/tienda1.jpg', "3")
-let producto3 = new Producto("vidrio templado", 1000, 'imagenes/tienda1.jpg', "4")
-let producto4 = new Producto("mouse", 2000, 'imagenes/tienda1.jpg', "5")
-let producto5 = new Producto("teclado", 1000, 'imagenes/tienda1.jpg', "6")
-let producto6 = new Producto("auricular", 1500, 'imagenes/tienda1.jpg', "7")//lista de productos
+let producto3 = new Producto("vidrio templado", 1000, 'imagenes/tienda1.jpg', 4)
+let producto4 = new Producto("mouse", 2000, 'imagenes/tienda1.jpg', 5)
+let producto5 = new Producto("teclado", 1000, 'imagenes/tienda1.jpg', 6)
+let producto6 = new Producto("auricular", 1500, 'imagenes/tienda1.jpg', 7)//lista de productos
 
 productos.push(producto0, producto1, producto2, producto3, producto4, producto5, producto6)//push a productos ya agregados
 
@@ -66,6 +67,7 @@ function agregarCarrito(obj){
         objFind.cantidad++;
     } 
 console.log(carrito);
+    alert(`agregaste ${obj.nombre} al carrito!`)
 visualizarCarrito();
 }
 //funcion para visualizar los objetos en el carrito 
@@ -75,14 +77,23 @@ function visualizarCarrito() {
         carritoDiv.innerHTML += `<tr>
                                        <td> ${obj.nombre}</td>
                                        <td> ${obj.importe}</td>
-                                       <td> ${obj.cantidad}</td>
+                                       <td>  <input id="cantidad-${obj.id}"type="number" value="${obj.cantidad}" min="1" max="1000" step="1" style="width: 50px;"></td>
+                                       <td>${estandarDolarAmericanos.format(obj.importe*obj.cantidad)})</td>
                                        <td> <button id="btn-eliminar${obj.id}">Borrar</button></td>
                                     </tr>`;
+
+        let inputCantidad = document.getElementById(`cantidad-${obj.id}`)
+        inputCantidad.addEventListener("change", (e) => { 
+            let nuevaCantidad = e.target.value;
+            obj.cantidad = nuevaCantidad;
+            visualizarCarrito();
+        })
     })
     localStorage.setItem("carrito", JSON.stringify(carrito))
     totalCarrito()
     borrarCarrito()
 }
+
 function totalCarrito() {
     cartelTotal.innerText = carrito.reduce((acc, el) => (acc + (el.importe)) * el.cantidad, 0)
 }

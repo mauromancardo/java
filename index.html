@@ -49,38 +49,66 @@
     </header>
 
     <body>
-
-        <section class="promociones">
-            <h2>Nuestro stock de celulares</h2>
-            <article id="tienda"></article>
-            <section>
-                <div>
-                    <h4>Tu carrito:</h4>
-                    <table class="table table-striped">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Ver carrito de compras <i class="bi bi-bag-check-fill"></i>
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Carrito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Producto</th>
                                 <th scope="col">Precio</th>
-                                <th scope="col">cantidad</th>
-                                <th scope="col">boton</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Suma por producto</th>
+                                <th scope="col">Eliminar producto</th>
                             </tr>
                         </thead>
-                        <tbody id="carrito1">
-                            <!-- aqui tabla carrito -->
-                        </tbody>
+                    <tbody id="carrito1">
+                        <!-- aqui tabla carrito -->
+                    </tbody>
+                        <tfoot>
+                            <tr id="footer">
+                                <th scope="row" colspan="5"></th>
+                            </tr>
+                        </tfoot>
                     </table>
                     <div>
                         <p totalp> Total: $</p>
                         <p id="total"></p>
                     </div>
+                    <div class="row" id="cards"></div>
                 </div>
-            </section>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Terminar compra</button>
+            </div>
+        </div>
+    </div>
+</div>
+        <section class="promociones">
+            <h2>Nuestro stock de celulares</h2>
+            <article id="tienda"></article>
+            
         </section>
         <script src="estilos/productos.js"></script>
         <script src="estilos/java1.js"></script>
         <script src="estilos/bootstrap.js"></script>
     </body>
     <footer class="footer">
+       
+
         <div>
             <h3> Pagina creada por Mauro mancardo</h3>
         </div>
