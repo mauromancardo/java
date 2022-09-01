@@ -3,6 +3,7 @@ const estandarDolarAmericanos = Intl.NumberFormat('en-US');
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];//array donde voy a guardar los elemntos del carrito y no se borra si actualizo la pagina
 const cartelTotal = document.querySelector("#total");
 const IVA = 1.21
+
 class ElementosCarrito {
     constructor(producto, cantidad) {
         this.producto = producto;
@@ -36,6 +37,8 @@ productos.push(producto0, producto1, producto2, producto3, producto4, producto5,
 const containerDiv = document.querySelector("#tienda");
 const carritoDiv = document.querySelector("#carrito1");
 
+
+
 //funcion para crear las cards segun los productos del array
 function crearCards() {
     productos.forEach((obj) => {
@@ -56,6 +59,7 @@ function agregarFuncionalidad() {
         })
     })
 }
+crearCards();
 //con esta funcion lo que hago es agregarle a la cantidad sin que se me agregue otro producto igual
 function agregarCarrito(obj){
     let existe = carrito.some((productoSome) => productoSome.id === obj.id);
@@ -67,21 +71,24 @@ function agregarCarrito(obj){
         objFind.cantidad++;
     } 
 console.log(carrito);
-    alert(`agregaste ${obj.nombre} al carrito!`)
+    /* alert(`agregaste ${obj.nombre} al carrito!`) */
+    Swal.fire(`agregaste ${obj.nombre} al carrito!`)
+
 visualizarCarrito();
 }
 //funcion para visualizar los objetos en el carrito 
 function visualizarCarrito() {
     carritoDiv.innerHTML = "";
     carrito.forEach((obj) => {
-        carritoDiv.innerHTML += `<tr>
+        let renglon = document.createElement("tr");
+        renglon.innerHTML += `<tr>
                                        <td> ${obj.nombre}</td>
                                        <td> ${obj.importe}</td>
                                        <td>  <input id="cantidad-${obj.id}"type="number" value="${obj.cantidad}" min="1" max="1000" step="1" style="width: 50px;"></td>
                                        <td>${estandarDolarAmericanos.format(obj.importe*obj.cantidad)})</td>
                                        <td> <button id="btn-eliminar${obj.id}">Borrar</button></td>
                                     </tr>`;
-
+          carritoDiv.append(renglon);                          
         let inputCantidad = document.getElementById(`cantidad-${obj.id}`)
         inputCantidad.addEventListener("change", (e) => { 
             let nuevaCantidad = e.target.value;
@@ -106,5 +113,9 @@ function borrarCarrito() {
         });
     });
 }
-crearCards();
-visualizarCarrito();
+
+
+
+
+
+
