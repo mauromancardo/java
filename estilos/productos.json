@@ -1,0 +1,31 @@
+[
+    {
+        "nombre":"notebook",
+        "precio":350000,
+        "img":"./imagenes/ip7.jpg"
+    },
+    {
+        "nombre": "celular",
+        "precio":125000 ,
+        "img": "./imagenes/ip7.jpg"
+    },
+    {
+        "nombre": "vidrio templado",
+        "precio":500 ,
+        "img": "./imagenes/ip7.jpg"
+    },
+    {
+        "nombre": "funda iohone 13",
+        "precio": 5000,
+        "img": "./imagenes/ip7.jpg"
+    },
+    {
+        "nombre": "mouse",
+        "precio":2000 ,
+        "img": "./imagenes/ip7.jpg"
+    },
+    {
+        "nombre": "monitor",
+        "precio": 175000 ,
+        "img": "./imagenes/ip7.jpg"
+    }]

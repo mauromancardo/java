@@ -693,7 +693,7 @@
     }
 
     try {
-      return JSON.parse(decodeURIComponent(value));
+      return json.parse(decodeURIComponent(value));
     } catch (_unused) {
       return value;
     }

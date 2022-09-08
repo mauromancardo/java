@@ -1,4 +1,4 @@
-const productos = [];//array donde tengo todos los productos
+let productos = [];//array donde tengo todos los productos
 const estandarDolarAmericanos = Intl.NumberFormat('en-US');
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];//array donde voy a guardar los elemntos del carrito y no se borra si actualizo la pagina
 const cartelTotal = document.querySelector("#total");
@@ -10,47 +10,27 @@ class ElementosCarrito {
         this.cantidad = cantidad;
     }
 }
-class Producto {
-    constructor(nombre, importe, foto, id) {
-        this.nombre = nombre
-        this.importe = importe
-        this.foto = foto
-        this.id = id
-
-    }
-    precioFinal() {
-        return parseFloat((this.importe * IVA).toFixed(2))//solo con dos decimales
-    }
-}//agrega iva
-
-
-let producto0 = new Producto("notebook", 100000, './imagenes/tienda1.jpg', 1)
-let producto1 = new Producto("celular", 80000, './imagenes/tienda1.jpg', 2)
-let producto2 = new Producto("funda", 1000, './imagenes/tienda1.jpg', "3")
-let producto3 = new Producto("vidrio templado", 1000, 'imagenes/tienda1.jpg', 4)
-let producto4 = new Producto("mouse", 2000, 'imagenes/tienda1.jpg', 5)
-let producto5 = new Producto("teclado", 1000, 'imagenes/tienda1.jpg', 6)
-let producto6 = new Producto("auricular", 1500, 'imagenes/tienda1.jpg', 7)//lista de productos
-
-productos.push(producto0, producto1, producto2, producto3, producto4, producto5, producto6)//push a productos ya agregados
 
 const containerDiv = document.querySelector("#tienda");
 const carritoDiv = document.querySelector("#carrito1");
-
-
-
-//funcion para crear las cards segun los productos del array
+const URLGET = "productos.json";
 function crearCards() {
-    productos.forEach((obj) => {
+    containerDiv.innerHTML="";
+    fetch(URLGET)
+    .then(ress => ress.json())
+    .then(data => {
+        productos=[...data]
+    data.forEach((obj) => {
         containerDiv.innerHTML += `<div>
                                         <img src ="${obj.foto}">
                                         <h3>${obj.nombre}</h3>
                                         <p>$${obj.importe}</p>
                                         <button id="btn-agregar${obj.id}">Agregar</button> 
                                     </div>`;
-    });
-      agregarFuncionalidad(); 
-}
+    })
+    agregarFuncionalidad();
+})}
+
 //agregandole funcion al boton para agregar producto al carrito 
 function agregarFuncionalidad() {
     productos.forEach((obj) => {
@@ -85,7 +65,7 @@ function visualizarCarrito() {
                                        <td> ${obj.nombre}</td>
                                        <td> ${obj.importe}</td>
                                        <td>  <input id="cantidad-${obj.id}"type="number" value="${obj.cantidad}" min="1" max="1000" step="1" style="width: 50px;"></td>
-                                       <td>${estandarDolarAmericanos.format(obj.importe*obj.cantidad)})</td>
+                                       <td>${estandarDolarAmericanos.format(obj.importe*obj.cantidad)}</td>
                                        <td> <button id="btn-eliminar${obj.id}">Borrar</button></td>
                                     </tr>`;
           carritoDiv.append(renglon);                          
@@ -104,6 +84,7 @@ function visualizarCarrito() {
 function totalCarrito() {
     cartelTotal.innerText = carrito.reduce((acc, el) => (acc + (el.importe)) * el.cantidad, 0)
 }
+
 //funcion para borrar los objetos del carrito 
 function borrarCarrito() {
     carrito.forEach((obj) => {
@@ -114,6 +95,14 @@ function borrarCarrito() {
     });
 }
 
+botonTerminar = document.getElementById("botonTerminar");
+botonTerminar.addEventListener("click", () =>
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Esta pagina aun no esta terminada!',
+        footer: '<a href="">Por que recibi este mensaje ?</a>'
+    }))
 
 
 
