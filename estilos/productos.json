@@ -2,30 +2,36 @@
     {
         "nombre":"notebook",
         "precio":350000,
-        "img":"./imagenes/ip7.jpg"
+        "img":"./imagenes/ip7.jpg",
+        "id":1
     },
     {
         "nombre": "celular",
         "precio":125000 ,
-        "img": "./imagenes/ip7.jpg"
+        "img": "./imagenes/ip7.jpg",
+        "id":2
     },
     {
         "nombre": "vidrio templado",
         "precio":500 ,
-        "img": "./imagenes/ip7.jpg"
+        "img": "./imagenes/ip7.jpg",
+        "id": 3
     },
     {
         "nombre": "funda iohone 13",
         "precio": 5000,
-        "img": "./imagenes/ip7.jpg"
+        "img": "./imagenes/ip7.jpg",
+        "id": 4
     },
     {
         "nombre": "mouse",
         "precio":2000 ,
-        "img": "./imagenes/ip7.jpg"
+        "img": "./imagenes/ip7.jpg",
+        "id": 5
     },
     {
         "nombre": "monitor",
         "precio": 175000 ,
-        "img": "./imagenes/ip7.jpg"
+        "img": "./imagenes/ip7.jpg",
+        "id": 6
     }]

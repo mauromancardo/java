@@ -13,7 +13,7 @@ class ElementosCarrito {
 
 const containerDiv = document.querySelector("#tienda");
 const carritoDiv = document.querySelector("#carrito1");
-const URLGET = "productos.json";
+const URLGET = "estilos/productos.json";
 function crearCards() {
     containerDiv.innerHTML="";
     fetch(URLGET)
@@ -22,14 +22,14 @@ function crearCards() {
         productos=[...data]
     data.forEach((obj) => {
         containerDiv.innerHTML += `<div>
-                                        <img src ="${obj.foto}">
+                                        <img src ="${obj.img}">
                                         <h3>${obj.nombre}</h3>
-                                        <p>$${obj.importe}</p>
+                                        <p>$${obj.precio}</p>
                                         <button id="btn-agregar${obj.id}">Agregar</button> 
                                     </div>`;
     })
     agregarFuncionalidad();
-})}
+})};
 
 //agregandole funcion al boton para agregar producto al carrito 
 function agregarFuncionalidad() {
@@ -63,9 +63,9 @@ function visualizarCarrito() {
         let renglon = document.createElement("tr");
         renglon.innerHTML += `<tr>
                                        <td> ${obj.nombre}</td>
-                                       <td> ${obj.importe}</td>
+                                       <td> ${obj.precio}</td>
                                        <td>  <input id="cantidad-${obj.id}"type="number" value="${obj.cantidad}" min="1" max="1000" step="1" style="width: 50px;"></td>
-                                       <td>${estandarDolarAmericanos.format(obj.importe*obj.cantidad)}</td>
+                                       <td>${estandarDolarAmericanos.format(obj.precio*obj.cantidad)}</td>
                                        <td> <button id="btn-eliminar${obj.id}">Borrar</button></td>
                                     </tr>`;
           carritoDiv.append(renglon);                          
@@ -82,7 +82,7 @@ function visualizarCarrito() {
 }
 
 function totalCarrito() {
-    cartelTotal.innerText = carrito.reduce((acc, el) => (acc + (el.importe)) * el.cantidad, 0)
+    cartelTotal.innerText = carrito.reduce((acc, el) => (acc + (el.precio)) * el.cantidad, 0)
 }
 
 //funcion para borrar los objetos del carrito 
