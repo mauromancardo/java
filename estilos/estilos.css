@@ -1,25 +1,132 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
 
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
 }
 
 /*header*/
 .header {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .header img {
-    width: 100px;
+  width: 100px;
+}
+
+/*hero*/
+.hero {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(80vh - 150px);
+  background: linear-gradient(rgba(0, 0, 0, 0.205), rgba(0, 0, 0, 0.205)), url(../imagenes/todoslosiphone.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.hero h2 {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 30px;
+  text-align: center;
+}
+
+.boton,
+.promociones article .irtienda {
+  text-decoration: none;
+  color: azure;
+  font-size: 30px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  background: linear-gradient(45deg, rgb(182, 162, 162), rgb(135, 135, 184), rgb(120, 189, 120), black);
+  background-size: 400% 400%;
+  position: relative;
+  animation: cambiar 10s ease-in-out infinite;
+}
+
+@keyframes cambiar {
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+/*main*/
+.main {
+  grid-area: main;
+  background-color: #c9d6da;
+}
+
+/*novedades*/
+.novedades {
+  margin-bottom: 30px;
+}
+
+.novedades .article1 {
+  text-align: center;
+}
+
+.novedades .article1 h2 {
+  background-color: rgba(35, 35, 35, 0.9);
+  color: white;
+}
+
+.novedades .video {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.novedades .video div iframe {
+  width: 600px;
+  height: 400px;
+  margin: 15px;
+}
+
+.novedades .video div .texto {
+  width: 550px;
+}
+
+.novedades .foto {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.novedades .foto .texto {
+  width: 550px;
+}
+
+.novedades .foto div img {
+  width: 600px;
+  height: 400px;
+  margin: 15px;
 }
 
 /*promociones*/
@@ -30,15 +137,18 @@ body {
   text-transform: uppercase;
   font-weight: 900px;
 }
+
 .promociones article {
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .promociones article .irtienda {
   margin-bottom: 50px;
 }
+
 .promociones article div {
   width: 355px;
   height: 450px;
@@ -53,6 +163,7 @@ body {
   align-items: center;
   transition: 1s;
 }
+
 .promociones article div a {
   background-color: aliceblue;
   color: rgb(15, 15, 80);
@@ -62,16 +173,19 @@ body {
   padding: 10px;
   margin-bottom: 15px;
 }
+
 .promociones article div img {
   border-radius: 15px;
   width: 350px;
   height: 300px;
 }
+
 .promociones article div p {
   text-align: center;
   color: black;
   font-weight: 900;
 }
+
 .promociones article div h3 {
   text-align: center;
   color: black;
@@ -82,6 +196,80 @@ body {
 
 .promociones article div:hover {
   transform: scale(1.1);
+}
+
+/*contacto*/
+.contacto {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.contacto div {
+  text-align: center;
+  width: 550px;
+  margin: 15px;
+}
+
+.contacto div iframe {
+  width: 550px;
+  height: 350px;
+  margin: 30px;
+}
+
+.contacto div h2 {
+  background-color: rgba(35, 35, 35, 0.9);
+  color: white;
+}
+
+.formulario article h3 {
+  margin: 100px;
+  text-align: center;
+}
+
+/*quienes somos*/
+.quienes article h2 {
+  text-align: center;
+  background-color: rgba(35, 35, 35, 0.9);
+  color: white;
+}
+
+.quienes .fotoq {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quienes .fotoq div img {
+  width: 700px;
+  height: 500px;
+  margin: 15px;
+}
+
+/*servicio tecnico*/
+.svctec {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.svctec h2 {
+  background-color: rgba(35, 35, 35, 0.9);
+  color: white;
+}
+
+.svctec div img {
+  width: 550px;
+}
+
+/*tienda*/
+.promociones h2 {
+  width: 100%;
+  background-color: rgba(35, 35, 35, 0.9);
 }
 
 /*footer*/
@@ -106,4 +294,225 @@ body {
 .footer div img {
   width: 50px;
   height: 50px;
+}
+
+@media screen and (max-width: 910px) {
+  .novedades .video div iframe {
+    width: 450px;
+    height: 400px;
+    margin: 15px;
+  }
+
+  .novedades .foto div img {
+    width: 450px;
+    height: 400px;
+    margin: 15px;
+  }
+
+  .quienes .fotoq div img {
+    width: 500px;
+    height: 300px;
+    margin: 5px;
+  }
+
+  .svctec div img {
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .novedades .video div iframe {
+    width: 370px;
+    height: 300px;
+    margin: 5px;
+  }
+
+  .novedades .foto div img {
+    width: 370px;
+    height: 300px;
+    margin: 5px;
+  }
+
+  .hero h2 {
+    font-size: 30px;
+  }
+
+  .hero p {
+    font-size: 20px;
+  }
+
+  .hero a {
+    padding: 5px;
+    font-size: 30px;
+  }
+
+  .contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .quienes .fotoq div img {
+    width: 400px;
+    height: 300px;
+    margin: 5px;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .novedades .video {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .novedades .foto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .svctec {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .novedades .foto .texto {
+    width: 350px;
+  }
+
+  .novedades .video .texto {
+    width: 350px;
+  }
+
+  .hero h2 {
+    font-size: 30px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .hero a {
+    padding: 5px;
+    font-size: 20px;
+  }
+
+  .contacto div {
+    width: 350px;
+  }
+
+  .contacto div iframe {
+    width: 350px;
+    height: 250px;
+    margin: 5px;
+  }
+
+  .formulario article h3 {
+    margin: 50px;
+  }
+
+  .quienes .fotoq {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .novedades .video div iframe {
+    width: 300px;
+    height: 200px;
+    margin: 5px;
+  }
+
+  .novedades .foto div img {
+    width: 300px;
+    height: 200px;
+    margin: 5px;
+  }
+
+  .promociones article div {
+    width: 255px;
+    height: 300px;
+  }
+
+  .promociones article div img {
+    transition: width 2s;
+    height: 2s;
+    border-radius: 15px;
+    width: 250px;
+    height: 150px;
+  }
+
+  .promociones .promociones article div img:hover {
+    width: 250px;
+    height: 200px;
+  }
+
+  .quienes .fotoq div img {
+    width: 300px;
+    height: 200px;
+    margin: 5px;
+  }
+
+  .svctec div img {
+    width: 350px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .novedades .video .texto {
+    width: 280px;
+  }
+
+  .novedades .video div iframe {
+    width: 280px;
+    height: 150px;
+    margin: 5px;
+  }
+
+  .novedades .foto .texto {
+    width: 280px;
+  }
+
+  .novedades .foto div img {
+    width: 280px;
+    height: 150px;
+    margin: 5px;
+  }
+
+  .footer div h3 {
+    font-size: small;
+  }
+
+  .quienes .fotoq div img {
+    width: 280px;
+    height: 200px;
+    margin: 5px;
+  }
+
+  .contacto div {
+    width: 280px;
+  }
+
+  .contacto div iframe {
+    width: 280px;
+    height: 150px;
+    margin: 5px;
+  }
+
+  .svctec div img {
+    width: 280px;
+  }
 }

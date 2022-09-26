@@ -1,37 +1,62 @@
 [
     {
-        "nombre":"notebook",
+        "nombre":"Notebook",
         "precio":350000,
-        "img":"./imagenes/ip7.jpg",
+        "img":"./imagenes/notebook.jpg",
         "id":1
     },
     {
-        "nombre": "celular",
-        "precio":125000 ,
-        "img": "./imagenes/ip7.jpg",
-        "id":2
+        "nombre": "Iphone 6",
+        "precio": 125000,
+        "img": "./imagenes/ip6.png",
+        "id": 2
     },
     {
-        "nombre": "vidrio templado",
-        "precio":500 ,
+        "nombre": "Iphone 7",
+        "precio":155000 ,
         "img": "./imagenes/ip7.jpg",
-        "id": 3
+        "id":3
     },
     {
-        "nombre": "funda iohone 13",
-        "precio": 5000,
-        "img": "./imagenes/ip7.jpg",
+        "nombre": "Iphone 8",
+        "precio": 185000,
+        "img": "./imagenes/ip8.jpeg",
         "id": 4
     },
     {
-        "nombre": "mouse",
-        "precio":2000 ,
-        "img": "./imagenes/ip7.jpg",
+        "nombre": "Iphone 9",
+        "precio": 205000,
+        "img": "./imagenes/ip9.jpg",
         "id": 5
     },
     {
-        "nombre": "monitor",
-        "precio": 175000 ,
-        "img": "./imagenes/ip7.jpg",
+        "nombre": "Iphone 10",
+        "precio": 225000,
+        "img": "./imagenes/ip10.jpg",
         "id": 6
-    }]
+    },
+    {
+        "nombre": "Vidrio templado",
+        "precio":500 ,
+        "img": "./imagenes/vidrio.jpg",
+        "id": 7
+    },
+    {
+        "nombre": "Funda iphone 13",
+        "precio": 5000,
+        "img": "./imagenes/funda.jpg",
+        "id": 8
+    },
+    {
+        "nombre": "Mouse",
+        "precio":2000 ,
+        "img": "./imagenes/mouse.jpg",
+        "id": 9
+    },
+    {
+        "nombre": "Monitor",
+        "precio": 175000 ,
+        "img": "./imagenes/monitor.jpg",
+        "id": 10
+    }
+]

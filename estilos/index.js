@@ -4,6 +4,7 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];//array donde vo
 const cartelTotal = document.querySelector("#total");
 const IVA = 1.21
 
+
 class ElementosCarrito {
     constructor(producto, cantidad) {
         this.producto = producto;
@@ -56,6 +57,7 @@ console.log(carrito);
 
 visualizarCarrito();
 }
+
 //funcion para visualizar los objetos en el carrito 
 function visualizarCarrito() {
     carritoDiv.innerHTML = "";
@@ -80,6 +82,7 @@ function visualizarCarrito() {
     totalCarrito()
     borrarCarrito()
 }
+visualizarCarrito();
 
 function totalCarrito() {
     cartelTotal.innerText = carrito.reduce((acc, el) => (acc + (el.precio)) * el.cantidad, 0)
@@ -96,14 +99,42 @@ function borrarCarrito() {
 }
 
 botonTerminar = document.getElementById("botonTerminar");
-botonTerminar.addEventListener("click", () =>
-    Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Esta pagina aun no esta terminada!',
-        footer: '<a href="">Por que recibi este mensaje ?</a>'
-    }))
 
+botonTerminar.addEventListener("click", () => realizarCompra()
+);
+
+function cartelCompra(){
+    let timerInterval
+    Swal.fire({
+        title: 'Realizando compra',
+        html: 'Cargando datos de envio <b></b>.',
+        timer: 4000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+            }, 100)
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
+        }
+    }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer')
+        }
+    })
+}
+
+function realizarCompra(){
+    localStorage.removeItem("carrito");
+    carritoDiv.innerHTML = "";
+    cartelTotal.innerText = "";
+    carrito =[];
+    cartelCompra();
+}
 
 
 
